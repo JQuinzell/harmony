@@ -1,5 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Login } from './components/global/Login'
+import { Routes } from './components/global/Routes'
 
-ReactDOM.render(<Login />, document.getElementById('app'))
+ReactDOM.render(<Routes />, document.getElementById('app'))

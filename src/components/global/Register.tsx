@@ -6,10 +6,9 @@ import {
   Typography,
 } from '@material-ui/core'
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
-  loginCard: {
+  registerCard: {
     width: '50%',
     height: '50vh',
     margin: `${theme.spacing(8)}px auto`,
@@ -22,11 +21,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const Login: React.FC = () => {
+export const Register: React.FC = () => {
   const styles = useStyles()
 
   return (
-    <Card className={styles.loginCard}>
+    <Card className={styles.registerCard}>
       <Grid
         container
         spacing={2}
@@ -35,7 +34,7 @@ export const Login: React.FC = () => {
         justify='center'
       >
         <Grid item>
-          <Typography variant='h3'>Login</Typography>
+          <Typography variant='h3'>Register</Typography>
         </Grid>
         <Grid item>
           <TextField label='username' variant='filled' fullWidth />
@@ -48,8 +47,15 @@ export const Login: React.FC = () => {
             fullWidth
           />
         </Grid>
+        <Grid item>
+          <TextField
+            label='confirmation'
+            type='password'
+            variant='filled'
+            fullWidth
+          />
+        </Grid>
       </Grid>
-      <Link to='/register'>Register</Link>
     </Card>
   )
 }
