@@ -1,4 +1,10 @@
-import { Card, Grid, makeStyles, TextField } from '@material-ui/core'
+import {
+  Card,
+  Grid,
+  makeStyles,
+  TextField,
+  Typography,
+} from '@material-ui/core'
 import React from 'react'
 
 const useStyles = makeStyles((theme) => ({
@@ -27,6 +33,9 @@ export const Login: React.FC = () => {
         alignItems='center'
         justify='center'
       >
+        <Grid item>
+          <Typography variant='h3'>Login</Typography>
+        </Grid>
         <Grid item>
           <TextField label='username' variant='filled' fullWidth />
         </Grid>
