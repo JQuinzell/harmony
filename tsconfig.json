@@ -3,7 +3,7 @@
     "target": "ES2019",
     "jsx": "react",
     "module": "commonjs",
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "outDir": "./dist",
     "allowJs": true,
     "strict": true,
