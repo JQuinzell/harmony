@@ -7,6 +7,9 @@ const useStyles = makeStyles({
   root: {
     height: '100vh',
   },
+  serverPanel: {
+    flexGrow: 1,
+  },
 })
 
 export const App: React.FC = () => {
@@ -16,7 +19,7 @@ export const App: React.FC = () => {
       <Grid item>
         <SideBar />
       </Grid>
-      <Grid item>
+      <Grid className={styles.serverPanel} item>
         <Server />
       </Grid>
     </Grid>

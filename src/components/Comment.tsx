@@ -3,7 +3,7 @@ import React from 'react'
 
 const useStyles = makeStyles((theme) => ({
   comment: {
-    margin: `${theme.spacing(2)}px 0`,
+    marginBottom: `${theme.spacing(2)}px`,
     '& .MuiAvatar-root': {
       margin: `0 ${theme.spacing(1)}px`,
     },
