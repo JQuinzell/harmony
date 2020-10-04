@@ -1,5 +1,6 @@
-import { makeStyles } from '@material-ui/core'
+import { Grid, Icon, makeStyles } from '@material-ui/core'
 import React from 'react'
+import { ServerButton } from './ServerButton'
 
 const servers = [{ name: 'Cool Server' }, { name: 'S2' }, { name: 'S3' }]
 
@@ -7,17 +8,9 @@ const useStyles = makeStyles((theme) => ({
   nav: {
     background: theme.palette.background.paper,
     height: '100%',
-    display: 'inline-block',
   },
-  server: {
-    width: '70px',
-    height: '70px',
-    margin: `${theme.spacing(2)}px`,
-    borderRadius: '100%',
-    background: theme.palette.primary.light,
-    textAlign: 'center',
-    lineHeight: '70px',
-    fontSize: 24,
+  addServer: {
+    marginTop: 'auto',
   },
 }))
 
@@ -25,12 +18,17 @@ export const SideBar: React.FC = () => {
   const styles = useStyles()
 
   return (
-    <nav className={styles.nav}>
+    <Grid className={styles.nav} container direction='column' component='nav'>
       {servers.map(({ name }) => (
-        <div key={name} className={styles.server}>
-          {name.slice(0, 2)}
-        </div>
+        <Grid key={name} item>
+          <ServerButton>{name.slice(0, 2)}</ServerButton>
+        </Grid>
       ))}
-    </nav>
+      <Grid item className={styles.addServer}>
+        <ServerButton>
+          <Icon>add</Icon>
+        </ServerButton>
+      </Grid>
+    </Grid>
   )
 }
