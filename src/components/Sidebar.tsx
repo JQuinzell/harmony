@@ -1,5 +1,6 @@
 import { Grid, Icon, makeStyles } from '@material-ui/core'
 import React from 'react'
+import { AddServer } from './AddServer'
 import { ServerButton } from './ServerButton'
 
 const servers = [{ name: 'Cool Server' }, { name: 'S2' }, { name: 'S3' }]
@@ -25,9 +26,7 @@ export const SideBar: React.FC = () => {
         </Grid>
       ))}
       <Grid item className={styles.addServer}>
-        <ServerButton>
-          <Icon>add</Icon>
-        </ServerButton>
+        <AddServer />
       </Grid>
     </Grid>
   )

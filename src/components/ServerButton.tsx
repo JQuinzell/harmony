@@ -1,4 +1,4 @@
-import { Avatar, makeStyles } from '@material-ui/core'
+import { Avatar, AvatarProps, makeStyles } from '@material-ui/core'
 import React from 'react'
 
 const useStyles = makeStyles((theme) => ({
@@ -14,7 +14,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const ServerButton: React.FC = ({ children }) => {
+export const ServerButton: React.FC<AvatarProps> = ({ children, ...props }) => {
   const styles = useStyles()
-  return <Avatar className={styles.server}>{children}</Avatar>
+  return (
+    <Avatar className={styles.server} {...props}>
+      {children}
+    </Avatar>
+  )
 }
