@@ -1,4 +1,4 @@
-import { Grid, Icon, makeStyles } from '@material-ui/core'
+import { Grid, makeStyles } from '@material-ui/core'
 import React from 'react'
 import { AddServer } from './AddServer'
 import { ServerButton } from './ServerButton'
