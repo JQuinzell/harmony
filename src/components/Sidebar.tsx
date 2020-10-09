@@ -1,6 +1,7 @@
 import { Grid, makeStyles } from '@material-ui/core'
 import React from 'react'
 import { AddServer } from './AddServer'
+import { SearchServer } from './SearchServer'
 import { ServerButton } from './ServerButton'
 
 const servers = [{ name: 'Cool Server' }, { name: 'S2' }, { name: 'S3' }]
@@ -10,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.background.paper,
     height: '100%',
   },
-  addServer: {
+  bottomIcons: {
     marginTop: 'auto',
   },
 }))
@@ -25,8 +26,9 @@ export const SideBar: React.FC = () => {
           <ServerButton>{name.slice(0, 2)}</ServerButton>
         </Grid>
       ))}
-      <Grid item className={styles.addServer}>
+      <Grid item className={styles.bottomIcons}>
         <AddServer />
+        <SearchServer />
       </Grid>
     </Grid>
   )
