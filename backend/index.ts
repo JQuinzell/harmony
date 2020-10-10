@@ -1,10 +1,24 @@
-import * as express from 'express'
+import { ApolloServer, gql } from 'apollo-server'
 import { servers } from './data/server'
 
-const app = express()
+const typeDefs = gql`
+  type Server {
+    title: String!
+    description: String!
+    image: String!
+  }
 
-app.get('/servers', (req, res) => {
-  res.json(servers)
-})
+  type Query {
+    servers: [Server!]!
+  }
+`
 
-app.listen(3000, () => console.log('Server Running'))
+const resolvers = {
+  Query: {
+    servers: () => servers,
+  },
+}
+
+const server = new ApolloServer({ typeDefs, resolvers })
+
+server.listen(3000).then(({ url }) => console.log(`Server listening at ${url}`))
