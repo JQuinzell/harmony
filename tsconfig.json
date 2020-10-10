@@ -12,5 +12,5 @@
     "sourceMap": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src/**/*", "./typings.d.ts", "tests/**/*"]
+  "include": ["src/**/*", "./typings.d.ts", "tests/**/*", "backend/**/*"]
 }
