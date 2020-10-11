@@ -1,4 +1,4 @@
-interface Server {
+export interface Server {
   title: string
   description: string
   image: string
