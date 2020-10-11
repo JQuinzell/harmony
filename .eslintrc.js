@@ -23,6 +23,7 @@ module.exports = {
     semi: 'off',
     '@typescript-eslint/semi': 'off',
     'react/prop-types': 0,
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     'react/self-closing-comp': [
       'error',
       {

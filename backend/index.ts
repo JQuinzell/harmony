@@ -1,24 +1,23 @@
-import { ApolloServer, gql } from 'apollo-server'
-import { servers } from './data/server'
+import { ApolloServer } from 'apollo-server'
+import { resolvers } from './resolvers'
+import { typeDefs } from './schemas'
+import * as jwt from 'jsonwebtoken'
+import { users } from './data/users'
 
-const typeDefs = gql`
-  type Server {
-    title: String!
-    description: String!
-    image: String!
-  }
-
-  type Query {
-    servers: [Server!]!
-  }
-`
-
-const resolvers = {
-  Query: {
-    servers: () => servers,
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({
+    req: {
+      headers: { authorization },
+    },
+  }) => {
+    if (authorization) {
+      const token = jwt.verify(authorization, 'notsecret') as { name: string }
+      return users.find(({ name }) => name === token.name)
+    }
+    return {}
   },
-}
-
-const server = new ApolloServer({ typeDefs, resolvers })
+})
 
 server.listen(3000).then(({ url }) => console.log(`Server listening at ${url}`))
