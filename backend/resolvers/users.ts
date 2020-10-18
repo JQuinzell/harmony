@@ -2,6 +2,7 @@ import { User, users } from 'backend/data/users'
 import { Resolvers } from './resolvers'
 import * as jwt from 'jsonwebtoken'
 import { secret } from 'backend/data/secret'
+import { servers } from 'backend/data/servers'
 
 interface CreateUserArgs {
   user: { name: string; password: string }
@@ -35,9 +36,14 @@ const resolvers: Resolvers = {
     ): string => {
       const existing = users.find((user) => user.name === name)
       if (existing) throw new Error('User exists already')
-      users.push({ name, password })
+      users.push({ name, password, servers: [] })
       const token = jwt.sign({ name }, secret)
       return token
+    },
+  },
+  User: {
+    servers: (parent) => {
+      return servers.filter(({ id }) => parent.servers.includes(id))
     },
   },
 }

@@ -3,6 +3,7 @@ import { gql } from 'apollo-server'
 export default gql`
   type User {
     name: String!
+    servers: [Server!]!
   }
 
   extend type Query {
