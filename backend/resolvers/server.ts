@@ -1,5 +1,4 @@
 import { servers, Server } from 'backend/data/servers'
-import { users } from 'backend/data/users'
 import { Resolvers } from './resolvers'
 
 interface JoinServerArgs {
@@ -19,7 +18,7 @@ const resolvers: Resolvers = {
       const server = servers.find((server) => server.id === args.id)
       if (!server) throw new Error('Server not found')
 
-      users.find(({ id }) => id === user.id)?.servers.push(server.id)
+      user.servers.push(server.id)
       return server
     },
   },
