@@ -36,7 +36,7 @@ const resolvers: Resolvers = {
     ): string => {
       const existing = users.find((user) => user.name === name)
       if (existing) throw new Error('User exists already')
-      users.push({ name, password, servers: [] })
+      users.push({ id: 99, name, password, servers: [] })
       const token = jwt.sign({ name }, secret)
       return token
     },

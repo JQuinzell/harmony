@@ -7,4 +7,8 @@ export default gql`
     description: String!
     image: String!
   }
+
+  extend type Mutation {
+    joinServer(id: Int!): Server
+  }
 `
