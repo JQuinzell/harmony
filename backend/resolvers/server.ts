@@ -5,11 +5,27 @@ interface JoinServerArgs {
   id: number
 }
 
+interface CreateServerArgs {
+  server: { title: string; description: string; image: string }
+}
+
 const resolvers: Resolvers = {
   Query: {
     servers: (): Server[] => servers,
   },
   Mutation: {
+    createServer: (parent, args: CreateServerArgs, context) => {
+      const user = context.user
+      if (!user) throw new Error('Must be logged in to create server')
+
+      const [{ id }] = servers.slice(-1)
+      const server = {
+        id,
+        ...args.server,
+      }
+      servers.push(server)
+      return server
+    },
     joinServer: (parent, args: JoinServerArgs, context): Server => {
       const user = context.user
       if (!user) throw new Error('Must be logged in to join server')

@@ -8,7 +8,14 @@ export default gql`
     image: String!
   }
 
+  input CreateServer {
+    title: String!
+    description: String!
+    image: String!
+  }
+
   extend type Mutation {
+    createServer(server: CreateServer!): Server
     joinServer(id: Int!): Server
   }
 `
