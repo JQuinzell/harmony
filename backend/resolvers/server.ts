@@ -12,7 +12,6 @@ const resolvers: Resolvers = {
   Mutation: {
     joinServer: (parent, args: JoinServerArgs, context): Server => {
       const user = context.user
-      console.log(user)
       if (!user) throw new Error('Must be logged in to join server')
 
       const server = servers.find((server) => server.id === args.id)
