@@ -1,4 +1,4 @@
-import { servers, Server } from 'backend/data/server'
+import { servers, Server } from 'backend/data/servers'
 import { Resolvers } from './resolvers'
 
 const resolvers: Resolvers = {
