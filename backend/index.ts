@@ -3,6 +3,8 @@ import { resolvers } from './resolvers'
 import { typeDefs } from './schemas'
 import * as jwt from 'jsonwebtoken'
 import { users } from './data/users'
+import { secret } from './data/secret'
+import { Context } from './context'
 
 const server = new ApolloServer({
   typeDefs,
@@ -11,10 +13,11 @@ const server = new ApolloServer({
     req: {
       headers: { authorization },
     },
-  }) => {
+  }): Context => {
     if (authorization) {
-      const token = jwt.verify(authorization, 'notsecret') as { name: string }
-      return users.find(({ name }) => name === token.name)
+      const token = jwt.verify(authorization, secret) as { name?: string }
+      const user = users.find(({ name }) => name === token.name)
+      return { user }
     }
     return {}
   },
