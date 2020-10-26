@@ -1,3 +1,4 @@
+import { messages } from 'backend/data/messages'
 import { servers, Server } from 'backend/data/servers'
 import { Resolvers } from './resolvers'
 
@@ -35,6 +36,11 @@ const resolvers: Resolvers = {
 
       user.servers.push(server.id)
       return server
+    },
+  },
+  Server: {
+    messages: (parent: Server) => {
+      return messages.filter(({ serverId }) => serverId === parent.id)
     },
   },
 }

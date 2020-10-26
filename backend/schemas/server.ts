@@ -6,6 +6,7 @@ export default gql`
     title: String!
     description: String!
     image: String!
+    messages: [Message!]!
   }
 
   input CreateServer {
