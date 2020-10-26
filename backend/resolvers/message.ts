@@ -1,0 +1,31 @@
+import { Message, messages } from 'backend/data/messages'
+import { servers } from 'backend/data/servers'
+import { Resolvers } from './resolvers'
+
+interface PostMessageArgs {
+  message: {
+    serverId: number
+    text: string
+  }
+}
+
+const resolvers: Resolvers = {
+  Mutation: {
+    postMessage: (parent, { message }: PostMessageArgs, context) => {
+      const user = context.user
+      if (!user) throw new Error('Must be logged in to post a message')
+      const server = servers.find(({ id }) => id === message.serverId)
+      if (!server) throw new Error('Server not found')
+      const [{ id }] = messages.slice(-1)
+      const newMessage: Message = {
+        id,
+        userId: user.id,
+        ...message,
+        date: new Date(),
+      }
+      return newMessage
+    },
+  },
+}
+
+export default resolvers
