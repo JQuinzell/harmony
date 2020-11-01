@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@apollo/client": "^3.2.5",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@types/jsonwebtoken": "^8.5.0",
@@ -19,8 +20,10 @@
     "@types/react-dom": "^16.0.5",
     "apollo-server": "^2.18.2",
     "deepmerge": "^4.2.2",
-    "graphql": "^15.3.0",
+    "graphql": "^15.4.0",
     "jsonwebtoken": "^8.5.1",
+    "mobx": "^6.0.1",
+    "mobx-react-lite": "^3.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.2.0",
@@ -35,5 +38,8 @@
     "parcel": "^1.12.4",
     "prettier": "^2.0.5",
     "ts-node-dev": "^1.0.0-pre.63"
-  }
+  },
+  "browserslist": [
+    "last 2 ff versions"
+  ]
 }

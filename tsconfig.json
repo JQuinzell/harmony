@@ -10,7 +10,8 @@
     "lib": ["esnext", "dom"],
     "removeComments": true,
     "sourceMap": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true
   },
   "include": ["src/**/*", "./typings.d.ts", "tests/**/*", "backend/**/*"]
 }

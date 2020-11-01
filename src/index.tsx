@@ -1,5 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { RootStoreProvider } from './RootStoreContext'
 import { Routes } from './components/Routes'
 
-ReactDOM.render(<Routes />, document.getElementById('app'))
+ReactDOM.render(
+  <RootStoreProvider>
+    <Routes />
+  </RootStoreProvider>,
+  document.getElementById('app')
+)
