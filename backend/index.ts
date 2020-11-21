@@ -9,11 +9,8 @@ import { Context } from './context'
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({
-    req: {
-      headers: { authorization },
-    },
-  }): Context => {
+  context: ({ req }): Context => {
+    const authorization = req.headers.authorization
     if (authorization) {
       const token = jwt.verify(authorization, secret) as { name?: string }
       const user = users.find(({ name }) => name === token.name)
