@@ -1,7 +1,13 @@
 import { ApolloClient, InMemoryCache, gql, HttpLink } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
-import { observable } from 'mobx'
+import { makeAutoObservable, runInAction } from 'mobx'
 
+interface ServerPreview {
+  id: number
+  title: string
+  description: string
+  image: string
+}
 
 const httpLink = new HttpLink({ uri: 'http://localhost:3000/' })
 
@@ -19,15 +25,21 @@ const authLink = setContext((_, { headers }) => {
 })
 
 export default class RootStore {
-  @observable userToken: string | null
+  userToken: string | null
   client: ApolloClient<unknown> = new ApolloClient({
     cache: new InMemoryCache(),
     link: authLink.concat(httpLink),
   })
+  servers: ServerPreview[] = []
 
   constructor() {
+    makeAutoObservable(this, { client: false })
     //TODO: change to store in cookie; storage is insecure
     this.userToken = localStorage.getItem('userToken')
+    if (this.userToken)
+      runInAction(() => {
+        this.loadServers()
+      })
   }
 
   async login(username: string, password: string) {
@@ -41,5 +53,24 @@ export default class RootStore {
     })
     this.userToken = result.data.result
     localStorage.setItem('userToken', this.userToken)
+    this.loadServers()
+  }
+
+  async loadServers() {
+    const result = await this.client.query<{ servers: ServerPreview[] }>({
+      query: gql`
+        query serverPreviews {
+          servers {
+            id
+            title
+            description
+            image
+          }
+        }
+      `,
+    })
+    runInAction(() => {
+      this.servers = result.data.servers
+    })
   }
 }

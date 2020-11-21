@@ -1,10 +1,12 @@
 import { Grid, makeStyles } from '@material-ui/core'
+import { observer } from 'mobx-react-lite'
 import React from 'react'
+import { useRootStore } from '../RootStoreContext'
 import { AddServer } from './AddServer'
 import { SearchServer } from './SearchServer'
 import { ServerButton } from './ServerButton'
 
-const servers = [{ name: 'Cool Server' }, { name: 'S2' }, { name: 'S3' }]
+const servers = [{ title: 'Cool Server' }, { title: 'S2' }, { title: 'S3' }]
 
 const useStyles = makeStyles((theme) => ({
   nav: {
@@ -16,14 +18,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const SideBar: React.FC = () => {
+export const SideBar: React.FC = observer(() => {
   const styles = useStyles()
+  const rootStore = useRootStore()
 
   return (
     <Grid className={styles.nav} container direction='column' component='nav'>
-      {servers.map(({ name }) => (
-        <Grid key={name} item>
-          <ServerButton>{name.slice(0, 2)}</ServerButton>
+      {rootStore.servers.map(({ title }) => (
+        <Grid key={title} item>
+          <ServerButton>{title.slice(0, 2)}</ServerButton>
         </Grid>
       ))}
       <Grid item className={styles.bottomIcons}>
@@ -32,4 +35,4 @@ export const SideBar: React.FC = () => {
       </Grid>
     </Grid>
   )
-}
+})
