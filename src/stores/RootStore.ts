@@ -31,15 +31,15 @@ export default class RootStore {
   }
 
   async login(username: string, password: string) {
-    const result = await this.client.query<string>({
+    const result = await this.client.query<{ result: string }>({
       query: gql`
         query login($username: String!, $password: String!) {
-          getToken(name: $username, password: $password)
+          result: getToken(name: $username, password: $password)
         }
       `,
       variables: { username, password },
     })
-    this.userToken = result.data
+    this.userToken = result.data.result
     localStorage.setItem('userToken', this.userToken)
   }
 }
