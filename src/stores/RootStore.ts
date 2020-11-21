@@ -1,11 +1,28 @@
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
+import { ApolloClient, InMemoryCache, gql, HttpLink } from '@apollo/client'
+import { setContext } from '@apollo/client/link/context'
 import { observable } from 'mobx'
+
+
+const httpLink = new HttpLink({ uri: 'http://localhost:3000/' })
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('userToken')
+  const authorization = token ? { authorization: token } : null
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      ...authorization,
+    },
+  }
+})
 
 export default class RootStore {
   @observable userToken: string | null
   client: ApolloClient<unknown> = new ApolloClient({
-    uri: 'http://localhost:3000/',
     cache: new InMemoryCache(),
+    link: authLink.concat(httpLink),
   })
 
   constructor() {
