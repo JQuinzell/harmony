@@ -2,7 +2,7 @@ import React from 'react'
 import { createContext, useContext } from 'react'
 import RootStore from './stores/RootStore'
 
-const RootStoreContext = createContext<RootStore>(new RootStore())
+const RootStoreContext = createContext<RootStore | undefined>(undefined)
 
 export const RootStoreProvider: React.FC = ({ children }) => (
   <RootStoreContext.Provider value={new RootStore()}>
