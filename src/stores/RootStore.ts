@@ -117,7 +117,6 @@ export default class RootStore {
     const currentServer = this.currentServer
     if (!currentServer) return
     const serverId = currentServer.id
-    console.log({ serverId })
     const result = await this.client.mutate<{ message: Message }>({
       mutation: gql`
         mutation postMessage($text: String!, $serverId: Int!) {
