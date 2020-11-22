@@ -27,7 +27,7 @@ const resolvers: Resolvers = {
 
       const [{ id }] = servers.slice(-1)
       const server = {
-        id,
+        id: id + 1,
         ...args.server,
       }
       servers.push(server)
