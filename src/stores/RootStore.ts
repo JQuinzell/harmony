@@ -69,20 +69,24 @@ export default class RootStore {
   }
 
   async loadServers() {
-    const result = await this.client.query<{ servers: ServerPreview[] }>({
+    const result = await this.client.query<{
+      user: { servers: ServerPreview[] }
+    }>({
       query: gql`
         query serverPreviews {
-          servers {
-            id
-            title
-            description
-            image
+          user {
+            servers {
+              id
+              title
+              description
+              image
+            }
           }
         }
       `,
     })
     runInAction(() => {
-      this.servers = result.data.servers
+      this.servers = result.data.user.servers
     })
   }
 
