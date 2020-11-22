@@ -1,17 +1,8 @@
 import { makeStyles, TextField } from '@material-ui/core'
+import { observer } from 'mobx-react-lite'
 import React from 'react'
+import { useRootStore } from '../RootStoreContext'
 import { Comment } from './Comment'
-
-const comments = [
-  { id: 1, name: 'John', text: 'Hello world', date: new Date(2020, 9, 1) },
-  {
-    id: 2,
-    name: 'Alex',
-    text: 'Responding to Hello world',
-    date: new Date(2020, 9, 1),
-  },
-  { id: 3, name: 'Luke', text: 'Hello world', date: new Date() },
-]
 
 const useStyles = makeStyles((theme) => ({
   panel: {
@@ -28,13 +19,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const Server: React.FC = () => {
+export const Server: React.FC = observer(() => {
   const styles = useStyles()
+  const rootStore = useRootStore()
+  const messages = rootStore.currentServer?.messages
 
   return (
     <main className={styles.panel}>
-      {comments.map(({ id, ...comment }) => (
-        <Comment key={id} {...comment} />
+      {messages?.map(({ id, user, ...message }) => (
+        <Comment key={id} {...message} name={user.name} />
       ))}
       <TextField
         className={styles.input}
@@ -44,4 +37,4 @@ export const Server: React.FC = () => {
       />
     </main>
   )
-}
+})

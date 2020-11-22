@@ -6,8 +6,6 @@ import { AddServer } from './AddServer'
 import { SearchServer } from './SearchServer'
 import { ServerButton } from './ServerButton'
 
-const servers = [{ title: 'Cool Server' }, { title: 'S2' }, { title: 'S3' }]
-
 const useStyles = makeStyles((theme) => ({
   nav: {
     background: theme.palette.background.paper,
@@ -26,7 +24,9 @@ export const SideBar: React.FC = observer(() => {
     <Grid className={styles.nav} container direction='column' component='nav'>
       {rootStore.servers.map(({ title }) => (
         <Grid key={title} item>
-          <ServerButton>{title.slice(0, 2)}</ServerButton>
+          <ServerButton onClick={() => rootStore.selectServer(title)}>
+            {title.slice(0, 2)}
+          </ServerButton>
         </Grid>
       ))}
       <Grid item className={styles.bottomIcons}>
