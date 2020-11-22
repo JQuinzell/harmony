@@ -13,7 +13,7 @@ interface Message {
   id: number
   user: { name: string }
   text: string
-  date: string
+  date: number
 }
 
 interface Server extends ServerPreview {
@@ -83,6 +83,29 @@ export default class RootStore {
     })
     runInAction(() => {
       this.servers = result.data.servers
+    })
+  }
+
+  async selectServer(title: string) {
+    const result = await this.client.query<{ server: Server }>({
+      query: gql`
+        query serverByName($title: String!) {
+          server(title: $title) {
+            messages {
+              id
+              user {
+                name
+              }
+              text
+              date
+            }
+          }
+        }
+      `,
+      variables: { title },
+    })
+    runInAction(() => {
+      this.currentServer = result.data.server
     })
   }
 }

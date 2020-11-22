@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 interface Props {
   name: string
   text: string
-  date: Date
+  date: number
 }
 
 export const Comment: React.FC<Props> = ({ name, text, date }) => {
@@ -25,7 +25,7 @@ export const Comment: React.FC<Props> = ({ name, text, date }) => {
       </Grid>
       <Grid item>
         <Typography variant='subtitle2'>
-          {name} {date.toLocaleDateString()}
+          {name} {new Date(date).toLocaleDateString()}
         </Typography>
         <Typography variant='body1'>{text}</Typography>
       </Grid>
