@@ -91,6 +91,10 @@ export default class RootStore {
       query: gql`
         query serverByName($title: String!) {
           server(title: $title) {
+            id
+            title
+            description
+            image
             messages {
               id
               user {
@@ -106,6 +110,32 @@ export default class RootStore {
     })
     runInAction(() => {
       this.currentServer = result.data.server
+    })
+  }
+
+  async postMessage(text: string) {
+    const currentServer = this.currentServer
+    if (!currentServer) return
+    const serverId = currentServer.id
+    console.log({ serverId })
+    const result = await this.client.mutate<{ message: Message }>({
+      mutation: gql`
+        mutation postMessage($text: String!, $serverId: Int!) {
+          message: postMessage(message: { text: $text, serverId: $serverId }) {
+            id
+            user {
+              name
+            }
+            text
+            date
+          }
+        }
+      `,
+      variables: { serverId, text },
+    })
+    runInAction(() => {
+      const message = result.data?.message
+      if (message) currentServer.messages.push(message)
     })
   }
 }
