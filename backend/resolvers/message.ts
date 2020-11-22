@@ -19,11 +19,12 @@ const resolvers: Resolvers = {
       if (!server) throw new Error('Server not found')
       const [{ id }] = messages.slice(-1)
       const newMessage: Message = {
-        id,
+        id: id + 1,
         userId: user.id,
         ...message,
         date: new Date(),
       }
+      messages.push(newMessage)
       return newMessage
     },
   },
