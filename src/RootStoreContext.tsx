@@ -11,5 +11,6 @@ export const RootStoreProvider: React.FC = ({ children }) => (
 )
 export function useRootStore() {
   const rootStore = useContext(RootStoreContext)
+  if (!rootStore) throw new Error('RootStore not provided')
   return rootStore
 }
