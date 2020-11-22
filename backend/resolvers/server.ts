@@ -10,9 +10,15 @@ interface CreateServerArgs {
   server: { title: string; description: string; image: string }
 }
 
+interface ServerByTitleArgs {
+  title: string
+}
+
 const resolvers: Resolvers = {
   Query: {
     servers: (): Server[] => servers,
+    server: (_, { title }: ServerByTitleArgs) =>
+      servers.find((server) => server.title === title),
   },
   Mutation: {
     createServer: (parent, args: CreateServerArgs, context) => {

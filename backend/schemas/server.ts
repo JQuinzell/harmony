@@ -19,4 +19,8 @@ export default gql`
     createServer(server: CreateServer!): Server
     joinServer(id: Int!): Server
   }
+
+  extend type Query {
+    server(title: String): Server
+  }
 `
