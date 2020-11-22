@@ -1,5 +1,6 @@
 import { Message, messages } from 'backend/data/messages'
 import { servers } from 'backend/data/servers'
+import { users } from 'backend/data/users'
 import { Resolvers } from './resolvers'
 
 interface PostMessageArgs {
@@ -24,6 +25,11 @@ const resolvers: Resolvers = {
         date: new Date(),
       }
       return newMessage
+    },
+  },
+  Message: {
+    user: (parent: Message) => {
+      return users.find(({ id }) => parent.userId === id)
     },
   },
 }
