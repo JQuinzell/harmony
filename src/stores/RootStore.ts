@@ -137,4 +137,33 @@ export default class RootStore {
       if (message) currentServer.messages.push(message)
     })
   }
+
+  async createServer(server: Pick<Server, 'title' | 'description' | 'image'>) {
+    const result = await this.client.mutate<{ server: Server }>({
+      mutation: gql`
+        mutation createServer($server: CreateServer!) {
+          server: createServer(server: $server) {
+            id
+            title
+            description
+            image
+            messages {
+              id
+              user {
+                name
+              }
+              text
+              date
+            }
+          }
+        }
+      `,
+      variables: { server },
+    })
+    runInAction(() => {
+      const server = result.data!.server
+      this.servers.push(server)
+      this.currentServer = server
+    })
+  }
 }
