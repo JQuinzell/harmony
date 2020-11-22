@@ -9,6 +9,17 @@ interface ServerPreview {
   image: string
 }
 
+interface Message {
+  id: number
+  user: { name: string }
+  text: string
+  date: string
+}
+
+interface Server extends ServerPreview {
+  messages: Message[]
+}
+
 const httpLink = new HttpLink({ uri: 'http://localhost:3000/' })
 
 const authLink = setContext((_, { headers }) => {
@@ -31,6 +42,7 @@ export default class RootStore {
     link: authLink.concat(httpLink),
   })
   servers: ServerPreview[] = []
+  currentServer: Server | null = null
 
   constructor() {
     makeAutoObservable(this, { client: false })
