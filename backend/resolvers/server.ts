@@ -30,6 +30,7 @@ const resolvers: Resolvers = {
         id: id + 1,
         ...args.server,
       }
+      user.servers.push(server.id)
       servers.push(server)
       return server
     },
