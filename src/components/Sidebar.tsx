@@ -22,7 +22,7 @@ export const SideBar: React.FC = observer(() => {
 
   return (
     <Grid className={styles.nav} container direction='column' component='nav'>
-      {rootStore.servers.map(({ title }) => (
+      {rootStore.joinedServers.map(({ title }) => (
         <Grid key={title} item>
           <ServerButton onClick={() => rootStore.selectServer(title)}>
             {title.slice(0, 2)}

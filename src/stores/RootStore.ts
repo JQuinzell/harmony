@@ -2,7 +2,7 @@ import { ApolloClient, InMemoryCache, gql, HttpLink } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import { makeAutoObservable, runInAction } from 'mobx'
 
-interface ServerPreview {
+export interface ServerPreview {
   id: number
   title: string
   description: string
@@ -16,7 +16,7 @@ interface Message {
   date: number
 }
 
-interface Server extends ServerPreview {
+export interface Server extends ServerPreview {
   messages: Message[]
 }
 
@@ -41,8 +41,9 @@ export default class RootStore {
     cache: new InMemoryCache(),
     link: authLink.concat(httpLink),
   })
-  servers: ServerPreview[] = []
+  joinedServers: ServerPreview[] = []
   currentServer: Server | null = null
+  servers: ServerPreview[] = []
 
   constructor() {
     makeAutoObservable(this, { client: false })
@@ -71,6 +72,7 @@ export default class RootStore {
   async loadServers() {
     const result = await this.client.query<{
       user: { servers: ServerPreview[] }
+      servers: ServerPreview[]
     }>({
       query: gql`
         query serverPreviews {
@@ -82,11 +84,19 @@ export default class RootStore {
               image
             }
           }
+          servers {
+            id
+            title
+            description
+            image
+          }
         }
       `,
     })
     runInAction(() => {
-      this.servers = result.data.user.servers
+      const servers = result.data.servers
+      this.joinedServers = result.data.user.servers
+      this.servers = servers
     })
   }
 
@@ -166,8 +176,32 @@ export default class RootStore {
     })
     runInAction(() => {
       const server = result.data!.server
-      this.servers.push(server)
+      this.joinedServers.push(server)
       this.currentServer = server
     })
+  }
+
+  async joinServer(id: Server['id']) {
+    let joined = this.joinedServers.find((server) => server.id === id)
+    if (!joined) {
+      const result = await this.client.mutate<{
+        server: Pick<ServerPreview, 'id'>
+      }>({
+        mutation: gql`
+          mutation joinServer($id: Int!) {
+            server: joinServer(id: $id) {
+              id
+            }
+          }
+        `,
+        variables: { id },
+      })
+      runInAction(() => {
+        joined = this.servers.find(({ id }) => result.data?.server.id === id)
+        if (joined) this.joinedServers.push(joined)
+      })
+    }
+
+    if (joined) this.selectServer(joined.title)
   }
 }
