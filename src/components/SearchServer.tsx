@@ -5,6 +5,7 @@ import {
   Icon,
   makeStyles,
 } from '@material-ui/core'
+import { observer } from 'mobx-react-lite'
 import React, { useState } from 'react'
 import { Server } from 'src/stores/RootStore'
 import { useRootStore } from '../RootStoreContext'
@@ -17,7 +18,7 @@ const useStyles = makeStyles({
   },
 })
 
-export const SearchServer: React.FC = () => {
+export const SearchServer: React.FC = observer(() => {
   const styles = useStyles()
   const [open, setOpen] = useState(false)
   const rootStore = useRootStore()
@@ -56,4 +57,4 @@ export const SearchServer: React.FC = () => {
       </Dialog>
     </>
   )
-}
+})
