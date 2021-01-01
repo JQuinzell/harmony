@@ -202,6 +202,8 @@ export default class RootStore {
       })
     }
 
-    if (joined) this.selectServer(joined.title)
+    runInAction(() => {
+      if (joined) this.selectServer(joined.title)
+    })
   }
 }
