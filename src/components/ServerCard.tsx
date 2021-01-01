@@ -1,6 +1,8 @@
 import {
+  Button,
   Card,
   CardActionArea,
+  CardActions,
   CardContent,
   CardMedia,
   makeStyles,
@@ -12,13 +14,20 @@ interface IProps {
   title: string
   image: string
   description: string
-  onClick: () => void
+  onJoin: () => void
 }
 
 const useStyles = makeStyles({
   card: {
     width: 320,
     margin: '0 16px',
+    '& .MuiCardContent-root': {
+      height: 120,
+      overflow: 'hidden',
+    },
+    '& .MuiCardActions-root button': {
+      marginLeft: 'auto',
+    },
   },
 })
 
@@ -26,19 +35,22 @@ export const ServerCard: React.FC<IProps> = ({
   title,
   image,
   description,
-  onClick,
+  onJoin,
 }) => {
   const styles = useStyles()
 
   return (
     <Card className={styles.card}>
-      <CardActionArea onClick={onClick}>
+      <CardActionArea>
         <CardMedia component='img' image={image} height={180} width={320} />
         <CardContent>
           <Typography variant='h5'>{title}</Typography>
           <Typography variant='body1'>{description}</Typography>
         </CardContent>
       </CardActionArea>
+      <CardActions>
+        <Button onClick={onJoin}>Join</Button>
+      </CardActions>
     </Card>
   )
 }
