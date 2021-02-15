@@ -1,6 +1,7 @@
 import { ApolloClient, InMemoryCache, gql, HttpLink } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import { makeAutoObservable, runInAction } from 'mobx'
+import fetch from 'cross-fetch'
 
 export interface ServerPreview {
   id: number
@@ -20,7 +21,7 @@ export interface Server extends ServerPreview {
   messages: Message[]
 }
 
-const httpLink = new HttpLink({ uri: 'http://localhost:3000/' })
+const httpLink = new HttpLink({ uri: 'http://localhost:3000/', fetch })
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
