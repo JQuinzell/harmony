@@ -1,4 +1,4 @@
-import { ServerPreview } from 'src/stores/RootStore'
+import { Server, ServerPreview } from 'src/stores/RootStore'
 
 interface ServerPreviewsQuery {
   user: { servers: ServerPreview[] }
@@ -32,4 +32,25 @@ interface LoginQuery {
 
 export const loginQuery: LoginQuery = {
   result: 'token',
+}
+
+interface ServerByNameQuery {
+  server: Server
+}
+
+export const serverByNameQuery: ServerByNameQuery = {
+  server: {
+    id: 1,
+    title: 'Server 1',
+    description: 'server 1 description',
+    image: 'image url',
+    messages: [
+      {
+        id: 1,
+        user: { name: 'user' },
+        text: 'a message',
+        date: 0,
+      },
+    ],
+  },
 }

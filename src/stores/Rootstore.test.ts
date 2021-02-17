@@ -1,4 +1,8 @@
-import { loginQuery, serverPreviewsQuery } from 'src/mocks/data'
+import {
+  loginQuery,
+  serverByNameQuery,
+  serverPreviewsQuery,
+} from 'src/mocks/data'
 import RootStore from './RootStore'
 
 describe('RootStore', () => {
@@ -47,6 +51,14 @@ describe('RootStore', () => {
 
       expect(store.userToken).toEqual(loginQuery.result)
       expect(localStorage.getItem('userToken')).toEqual(loginQuery.result)
+    })
+  })
+
+  describe('selectServer', () => {
+    it('should set currentServer', async () => {
+      await store.selectServer('server')
+
+      expect(store.currentServer).toEqual(serverByNameQuery.server)
     })
   })
 })
