@@ -3,4 +3,5 @@ module.exports = {
   testEnvironment: 'node',
   setupFilesAfterEnv: ['./src/setupTests.ts'],
   setupFiles: ['jest-localstorage-mock'],
+  moduleDirectories: ['node_modules', './'],
 }

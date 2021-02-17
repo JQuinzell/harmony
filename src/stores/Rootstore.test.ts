@@ -1,19 +1,18 @@
-import { servers, userServers } from '../mocks/handlers'
+import { loginQuery, serverPreviewsQuery } from 'src/mocks/data'
 import RootStore from './RootStore'
 
 describe('RootStore', () => {
   let store: RootStore
 
   beforeEach(() => {
-    console.log('new root store')
     store = new RootStore()
   })
 
-  describe('constructor', () => {
-    afterEach(() => {
-      localStorage.clear()
-    })
+  afterEach(() => {
+    localStorage.clear()
+  })
 
+  describe('constructor', () => {
     it('does not call loadServers if no userToken', () => {
       const spy = jest.spyOn(RootStore.prototype, 'loadServers')
       new RootStore()
@@ -32,10 +31,22 @@ describe('RootStore', () => {
 
   describe('loadServers', () => {
     it('loads users servers and global servers', async () => {
+      const loadServers = jest.spyOn(store, 'loadServers')
+
       await store.loadServers()
 
-      expect(store.servers).toEqual(servers)
-      expect(store.joinedServers).toEqual(userServers)
+      expect(store.servers).toEqual(serverPreviewsQuery.servers)
+      expect(store.joinedServers).toEqual(serverPreviewsQuery.user.servers)
+      expect(loadServers).toBeCalledTimes(1)
+    })
+  })
+
+  describe('login', () => {
+    it('sets token and loads servers', async () => {
+      await store.login('user', 'pass')
+
+      expect(store.userToken).toEqual(loginQuery.result)
+      expect(localStorage.getItem('userToken')).toEqual(loginQuery.result)
     })
   })
 })
