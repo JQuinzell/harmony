@@ -176,6 +176,7 @@ export default class RootStore {
       variables: { server },
     })
     runInAction(() => {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const server = result.data!.server
       this.joinedServers.push(server)
       this.currentServer = server
