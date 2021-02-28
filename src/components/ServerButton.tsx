@@ -14,11 +14,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const ServerButton: React.FC<AvatarProps> = ({ children, ...props }) => {
+interface Props extends AvatarProps {
+  title?: string
+}
+
+export const ServerButton: React.FC<Props> = ({ title, ...props }) => {
   const styles = useStyles()
   return (
-    <Avatar className={styles.server} {...props}>
-      {children}
-    </Avatar>
+    <div data-testid={title}>
+      <Avatar className={styles.server} {...props}>
+        {title?.slice(0, 2) ?? ''}
+      </Avatar>
+    </div>
   )
 }

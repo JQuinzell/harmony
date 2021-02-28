@@ -1,7 +1,7 @@
 import { Grid, makeStyles } from '@material-ui/core'
 import React from 'react'
 import { Server } from './Server'
-import { SideBar } from './Sidebar'
+import { SideBar } from './SideBar'
 
 const useStyles = makeStyles({
   root: {

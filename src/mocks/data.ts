@@ -14,6 +14,12 @@ export const serverPreviewsQuery: ServerPreviewsQuery = {
         description: 'my server description',
         image: 'my image',
       },
+      {
+        id: 2,
+        title: 'My Server 2',
+        description: 'my server description',
+        image: 'my image',
+      },
     ],
   },
   servers: [

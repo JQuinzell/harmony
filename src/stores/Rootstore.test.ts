@@ -18,6 +18,7 @@ describe('RootStore', () => {
 
   describe('constructor', () => {
     it('does not call loadServers if no userToken', () => {
+      localStorage.clear()
       const spy = jest.spyOn(RootStore.prototype, 'loadServers')
       new RootStore()
 
