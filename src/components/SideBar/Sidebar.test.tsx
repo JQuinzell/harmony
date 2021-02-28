@@ -7,15 +7,10 @@ import { SideBar } from './Sidebar'
 describe('Sidebar', () => {
   it('should list servers', async () => {
     const titles = serverPreviewsQuery.user.servers.map(({ title }) => title)
+    const { container } = renderWithProviders(<SideBar />)
 
-    renderWithProviders(<SideBar />)
+    await Promise.all(titles.map((title) => screen.findByTestId(title)))
 
-    const serverButtons = await Promise.all(
-      titles.map((title) => screen.findByTestId(title))
-    )
-
-    serverButtons.forEach((button) => {
-      expect(button).toBeDefined()
-    })
+    expect(container).toMatchSnapshot('Renders Sidebar')
   })
 })

@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sidebar should list servers: Renders Sidebar 1`] = `
+<div>
+  <nav
+    class="MuiGrid-root makeStyles-nav-1 MuiGrid-container MuiGrid-direction-xs-column"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-item"
+    >
+      <div
+        data-testid="My Server"
+      >
+        <div
+          class="MuiAvatar-root MuiAvatar-circle makeStyles-server-3 MuiAvatar-colorDefault"
+        >
+          My
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiGrid-root MuiGrid-item"
+    >
+      <div
+        data-testid="My Server 2"
+      >
+        <div
+          class="MuiAvatar-root MuiAvatar-circle makeStyles-server-3 MuiAvatar-colorDefault"
+        >
+          My
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiGrid-root makeStyles-bottomIcons-2 MuiGrid-item"
+    >
+      <div>
+        <div
+          class="MuiAvatar-root MuiAvatar-circle makeStyles-server-3 MuiAvatar-colorDefault"
+        />
+      </div>
+      <div>
+        <div
+          class="MuiAvatar-root MuiAvatar-circle makeStyles-server-3 MuiAvatar-colorDefault"
+        />
+      </div>
+    </div>
+  </nav>
+</div>
+`;
