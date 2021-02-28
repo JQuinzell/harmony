@@ -6,7 +6,6 @@ import { SideBar } from './Sidebar'
 
 describe('Sidebar', () => {
   it('should list servers', async () => {
-    console.log(serverPreviewsQuery.user.servers)
     const titles = serverPreviewsQuery.user.servers.map(({ title }) => title)
 
     renderWithProviders(<SideBar />)
