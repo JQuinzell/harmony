@@ -21,10 +21,12 @@ interface Props extends AvatarProps {
 export const ServerButton: React.FC<Props> = ({ title, ...props }) => {
   const styles = useStyles()
   return (
-    <div data-testid={title}>
-      <Avatar className={styles.server} {...props}>
-        {title?.slice(0, 2) ?? ''}
-      </Avatar>
-    </div>
+    <Avatar
+      data-testid={title?.replace(/ /g, '-')}
+      className={styles.server}
+      {...props}
+    >
+      {title?.slice(0, 2) ?? ''}
+    </Avatar>
   )
 }
