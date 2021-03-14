@@ -18,15 +18,20 @@ interface Props extends AvatarProps {
   title?: string
 }
 
-export const ServerButton: React.FC<Props> = ({ title, ...props }) => {
+export const ServerButton: React.FC<Props> = ({
+  title,
+  children,
+  ...props
+}) => {
   const styles = useStyles()
   return (
     <Avatar
-      data-testid={title?.replace(/ /g, '-')}
       className={styles.server}
+      role='button'
+      aria-label={title}
       {...props}
     >
-      {title?.slice(0, 2) ?? ''}
+      {children ?? title?.slice(0, 2) ?? ''}
     </Avatar>
   )
 }

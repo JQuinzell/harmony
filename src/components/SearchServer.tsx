@@ -38,7 +38,7 @@ export const SearchServer: React.FC = observer(() => {
 
   return (
     <>
-      <ServerButton onClick={openDialog}>
+      <ServerButton title='search' onClick={openDialog}>
         <Icon>search</Icon>
       </ServerButton>
       <Dialog fullWidth maxWidth='xl' open={open} onClose={closeDialog}>

@@ -38,7 +38,7 @@ export const AddServer: React.FC = () => {
 
   return (
     <>
-      <ServerButton onClick={openDialog}>
+      <ServerButton title='add' onClick={openDialog}>
         <Icon>add</Icon>
       </ServerButton>
       <Dialog open={open} onClose={closeDialog}>
