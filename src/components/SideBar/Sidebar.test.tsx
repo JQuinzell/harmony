@@ -17,4 +17,6 @@ describe('Sidebar', () => {
       titles.map((title) => screen.findByRole('button', { name: title }))
     )
   })
+
+  it.todo('clicking server opens it')
 })
