@@ -1,7 +1,8 @@
-import { ApolloClient, InMemoryCache, gql, HttpLink } from '@apollo/client'
-import { setContext } from '@apollo/client/link/context'
-import { makeAutoObservable, runInAction } from 'mobx'
-import fetch from 'cross-fetch'
+import { ApolloClient, InMemoryCache, gql, HttpLink } from "@apollo/client"
+import { setContext } from "@apollo/client/link/context"
+import { makeAutoObservable, runInAction } from "mobx"
+import fetch from "cross-fetch"
+import { CreateServer } from "./interfaces"
 
 export interface ServerPreview {
   id: number
@@ -21,11 +22,11 @@ export interface Server extends ServerPreview {
   messages: Message[]
 }
 
-const httpLink = new HttpLink({ uri: 'http://localhost:3000/', fetch })
+const httpLink = new HttpLink({ uri: "http://localhost:3000/", fetch })
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('userToken')
+  const token = localStorage.getItem("userToken")
   const authorization = token ? { authorization: token } : null
   // return the headers to the context so httpLink can read them
   return {
@@ -49,7 +50,7 @@ export default class RootStore {
   constructor() {
     makeAutoObservable(this, { client: false })
     //TODO: change to store in cookie; storage is insecure
-    this.userToken = localStorage.getItem('userToken')
+    this.userToken = localStorage.getItem("userToken")
     if (this.userToken)
       runInAction(() => {
         this.loadServers()
@@ -66,7 +67,7 @@ export default class RootStore {
       variables: { username, password },
     })
     this.userToken = result.data.result
-    localStorage.setItem('userToken', this.userToken)
+    localStorage.setItem("userToken", this.userToken)
     this.loadServers()
   }
 
@@ -153,7 +154,7 @@ export default class RootStore {
     })
   }
 
-  async createServer(server: Pick<Server, 'title' | 'description' | 'image'>) {
+  async createServer(server: CreateServer) {
     const result = await this.client.mutate<{ server: Server }>({
       mutation: gql`
         mutation createServer($server: CreateServer!) {
@@ -183,11 +184,11 @@ export default class RootStore {
     })
   }
 
-  async joinServer(id: Server['id']) {
+  async joinServer(id: Server["id"]) {
     let joined = this.joinedServers.find((server) => server.id === id)
     if (!joined) {
       const result = await this.client.mutate<{
-        server: Pick<ServerPreview, 'id'>
+        server: Pick<ServerPreview, "id">
       }>({
         mutation: gql`
           mutation joinServer($id: Int!) {

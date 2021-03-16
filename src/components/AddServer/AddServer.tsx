@@ -6,15 +6,15 @@ import {
   DialogTitle,
   Icon,
   TextField,
-} from "@material-ui/core"
-import React, { useState } from "react"
-import { useRootStore } from "../../RootStoreContext"
-import { ServerButton } from "../ServerButton"
+} from '@material-ui/core'
+import React, { useState } from 'react'
+import { useServerStore } from 'src/stores/serverHooks'
+import { ServerButton } from '../ServerButton'
 
 export const AddServer: React.FC = () => {
   const [open, setOpen] = useState(false)
-  const [title, setTitle] = useState("")
-  const rootStore = useRootStore()
+  const [title, setTitle] = useState('')
+  const { createServer } = useServerStore()
 
   function closeDialog() {
     setOpen(false)
@@ -26,12 +26,12 @@ export const AddServer: React.FC = () => {
 
   async function save() {
     if (title) {
-      await rootStore.createServer({
+      await createServer({
         title,
-        description: "A brief description",
-        image: "https://picsum.photos/seed/server/320/180",
+        description: 'A brief description',
+        image: 'https://picsum.photos/seed/server/320/180',
       })
-      setTitle("")
+      setTitle('')
       closeDialog()
     }
   }
@@ -49,6 +49,7 @@ export const AddServer: React.FC = () => {
         <DialogTitle id="create-server-title">Create Server</DialogTitle>
         <DialogContent>
           <TextField
+            id="name-input"
             value={title}
             label="name"
             variant="filled"
