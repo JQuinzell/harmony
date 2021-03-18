@@ -46,7 +46,7 @@ describe('AddServer', () => {
       await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
     })
 
-    it.only('can save a server', async () => {
+    it('can save a server', async () => {
       const name = 'server name'
       init()
 
