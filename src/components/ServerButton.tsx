@@ -27,7 +27,7 @@ export const ServerButton: React.FC<Props> = ({
   return (
     <Avatar
       className={styles.server}
-      role='button'
+      role="button"
       aria-label={title}
       {...props}
     >

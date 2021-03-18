@@ -24,10 +24,10 @@ export const Comment: React.FC<Props> = ({ name, text, date }) => {
         <Avatar>{name.slice(0, 2)}</Avatar>
       </Grid>
       <Grid item>
-        <Typography variant='subtitle2'>
+        <Typography variant="subtitle2">
           {name} {new Date(date).toLocaleDateString()}
         </Typography>
-        <Typography variant='body1'>{text}</Typography>
+        <Typography variant="body1">{text}</Typography>
       </Grid>
     </Grid>
   )

@@ -20,7 +20,7 @@ export const SideBar: React.FC = observer(() => {
   const styles = useStyles()
   const rootStore = useRootStore()
   return (
-    <Grid className={styles.nav} container direction='column' component='nav'>
+    <Grid className={styles.nav} container direction="column" component="nav">
       {rootStore.joinedServers.map((server) => (
         <Grid key={server.title} item>
           <ServerButton

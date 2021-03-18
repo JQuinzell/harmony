@@ -48,17 +48,17 @@ export const Login: React.FC = () => {
       <Grid
         container
         spacing={2}
-        direction='column'
-        alignItems='center'
-        justify='center'
+        direction="column"
+        alignItems="center"
+        justify="center"
       >
         <Grid item>
-          <Typography variant='h3'>Login</Typography>
+          <Typography variant="h3">Login</Typography>
         </Grid>
         <Grid item>
           <TextField
-            label='username'
-            variant='filled'
+            label="username"
+            variant="filled"
             fullWidth
             error={!!error}
             helperText={error}
@@ -68,9 +68,9 @@ export const Login: React.FC = () => {
         </Grid>
         <Grid item>
           <TextField
-            label='password'
-            type='password'
-            variant='filled'
+            label="password"
+            type="password"
+            variant="filled"
             fullWidth
             error={!!error}
             helperText={error}
@@ -79,13 +79,13 @@ export const Login: React.FC = () => {
           />
         </Grid>
         <Grid item>
-          <Button variant='contained' color='primary' onClick={onSubmit}>
+          <Button variant="contained" color="primary" onClick={onSubmit}>
             Sign Up
           </Button>
         </Grid>
       </Grid>
       <CardActions />
-      <Link to='/register'>Register</Link>
+      <Link to="/register">Register</Link>
     </Card>
   )
 }

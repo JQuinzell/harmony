@@ -42,10 +42,10 @@ export const ServerCard: React.FC<IProps> = ({
   return (
     <Card className={styles.card}>
       <CardActionArea>
-        <CardMedia component='img' image={image} height={180} width={320} />
+        <CardMedia component="img" image={image} height={180} width={320} />
         <CardContent>
-          <Typography variant='h5'>{title}</Typography>
-          <Typography variant='body1'>{description}</Typography>
+          <Typography variant="h5">{title}</Typography>
+          <Typography variant="body1">{description}</Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>

@@ -1,5 +1,5 @@
-import { useRootStore } from "../RootStoreContext"
-import { CreateServer } from "./interfaces"
+import { useRootStore } from '../RootStoreContext'
+import { CreateServer } from './interfaces'
 
 export function useServerStore() {
   const rootStore = useRootStore()

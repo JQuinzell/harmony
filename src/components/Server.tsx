@@ -40,8 +40,8 @@ export const Server: React.FC = observer(() => {
         value={comment}
         className={styles.input}
         fullWidth
-        variant='filled'
-        placeholder='Enter a message'
+        variant="filled"
+        placeholder="Enter a message"
         onChange={(e) => setComment(e.target.value)}
         onKeyDown={handleEnterText}
       />

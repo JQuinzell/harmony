@@ -29,29 +29,29 @@ export const Register: React.FC = () => {
       <Grid
         container
         spacing={2}
-        direction='column'
-        alignItems='center'
-        justify='center'
+        direction="column"
+        alignItems="center"
+        justify="center"
       >
         <Grid item>
-          <Typography variant='h3'>Register</Typography>
+          <Typography variant="h3">Register</Typography>
         </Grid>
         <Grid item>
-          <TextField label='username' variant='filled' fullWidth />
+          <TextField label="username" variant="filled" fullWidth />
         </Grid>
         <Grid item>
           <TextField
-            label='password'
-            type='password'
-            variant='filled'
+            label="password"
+            type="password"
+            variant="filled"
             fullWidth
           />
         </Grid>
         <Grid item>
           <TextField
-            label='confirmation'
-            type='password'
-            variant='filled'
+            label="confirmation"
+            type="password"
+            variant="filled"
             fullWidth
           />
         </Grid>

@@ -38,10 +38,10 @@ export const SearchServer: React.FC = observer(() => {
 
   return (
     <>
-      <ServerButton title='search' onClick={openDialog}>
+      <ServerButton title="search" onClick={openDialog}>
         <Icon>search</Icon>
       </ServerButton>
-      <Dialog fullWidth maxWidth='xl' open={open} onClose={closeDialog}>
+      <Dialog fullWidth maxWidth="xl" open={open} onClose={closeDialog}>
         <DialogTitle>Join a Server</DialogTitle>
         <DialogContent className={styles.cards}>
           {rootStore.servers.map(({ id, title, image, description }) => (

@@ -15,15 +15,15 @@ export const Routes: React.FC = () => {
         <Switch>
           <Route
             exact
-            path='/'
+            path="/"
             render={() =>
-              rootStore.userToken ? <App /> : <Redirect to='/login' />
+              rootStore.userToken ? <App /> : <Redirect to="/login" />
             }
           />
-          <Route exact path='/login'>
+          <Route exact path="/login">
             <Login />
           </Route>
-          <Route exact path='/register'>
+          <Route exact path="/register">
             <Register />
           </Route>
         </Switch>
