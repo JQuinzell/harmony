@@ -10,7 +10,6 @@ describe('Comment', () => {
     const date = new Date(2020, 1, 1).getTime()
     renderWithProviders(<Comment name={name} text={text} date={date} />)
 
-    screen.debug(screen.getByText('Na'))
     expect(screen.getByText('Na')).toBeInTheDocument()
     expect(screen.getByText(`${name}: 2/1/2020`))
   })
