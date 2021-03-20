@@ -25,7 +25,7 @@ export const Comment: React.FC<Props> = ({ name, text, date }) => {
       </Grid>
       <Grid item>
         <Typography variant="subtitle2">
-          {name} {new Date(date).toLocaleDateString()}
+          {name}: {new Date(date).toLocaleDateString('en-US')}
         </Typography>
         <Typography variant="body1">{text}</Typography>
       </Grid>
