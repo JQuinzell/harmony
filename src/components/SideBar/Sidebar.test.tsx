@@ -1,12 +1,12 @@
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import React from 'react'
-import { serverPreviewsQuery } from 'src/mocks/data'
-import { renderWithProviders } from 'src/testUtils'
+import { serverPreviewsQuery } from '~/mocks/data'
+import { renderWithProviders } from '~/testUtils'
 import { SideBar } from './Sidebar'
-import { useServerStore } from 'src/stores/serverHooks'
+import { useServerStore } from '~/stores/serverHooks'
 
-jest.mock('src/stores/serverHooks')
+jest.mock('~/stores/serverHooks')
 
 describe('Sidebar', () => {
   const init = () => renderWithProviders(<SideBar />)

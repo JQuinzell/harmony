@@ -1,11 +1,11 @@
-import { renderWithProviders } from 'src/testUtils'
+import { renderWithProviders } from '~/testUtils'
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { AddServer } from './AddServer'
 import React from 'react'
-import { useServerStore } from 'src/stores/serverHooks'
+import { useServerStore } from '~/stores/serverHooks'
 
-jest.mock('src/stores/serverHooks')
+jest.mock('~/stores/serverHooks')
 
 describe('AddServer', () => {
   const init = () => renderWithProviders(<AddServer />)

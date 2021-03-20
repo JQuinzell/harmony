@@ -1,5 +1,5 @@
 import React from 'react'
-import { renderWithProviders } from 'src/testUtils'
+import { renderWithProviders } from '~/testUtils'
 import { ServerButton } from './ServerButton'
 import { screen } from '@testing-library/react'
 

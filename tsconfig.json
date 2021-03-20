@@ -5,6 +5,9 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "baseUrl": "./",
+    "paths": {
+      "~/*": ["./src/*"]
+    },
     "outDir": "./dist",
     "allowJs": true,
     "strict": true,

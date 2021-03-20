@@ -1,4 +1,4 @@
-// src/mocks/server.js
+// ~/mocks/server.js
 import { setupServer } from 'msw/node'
 import { handlers } from './handlers'
 

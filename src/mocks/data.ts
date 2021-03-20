@@ -1,4 +1,4 @@
-import { Server, ServerPreview } from 'src/stores/RootStore'
+import { Server, ServerPreview } from '~/stores/RootStore'
 
 interface ServerPreviewsQuery {
   user: { servers: ServerPreview[] }

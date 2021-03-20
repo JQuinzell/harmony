@@ -2,7 +2,7 @@ import {
   loginQuery,
   serverByNameQuery,
   serverPreviewsQuery,
-} from 'src/mocks/data'
+} from '~/mocks/data'
 import RootStore from './RootStore'
 
 describe('RootStore', () => {

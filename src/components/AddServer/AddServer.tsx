@@ -8,7 +8,7 @@ import {
   TextField,
 } from '@material-ui/core'
 import React, { useState } from 'react'
-import { useServerStore } from 'src/stores/serverHooks'
+import { useServerStore } from '~/stores/serverHooks'
 import { ServerButton } from '../ServerButton'
 
 export const AddServer: React.FC = () => {

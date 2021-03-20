@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core'
 import { observer } from 'mobx-react-lite'
 import React, { useState } from 'react'
-import { Server } from 'src/stores/RootStore'
+import { Server } from '~/stores/RootStore'
 import { useRootStore } from '../RootStoreContext'
 import { ServerButton } from './ServerButton'
 import { ServerCard } from './ServerCard'
