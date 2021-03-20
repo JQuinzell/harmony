@@ -1,8 +1,8 @@
 import { makeStyles, TextField } from '@material-ui/core'
 import { observer } from 'mobx-react-lite'
 import React, { useState } from 'react'
-import { useRootStore } from '~/RootStoreContext'
 import { Comment } from '~/components/Comment'
+import { useServerStore } from '~/stores/serverHooks'
 
 const useStyles = makeStyles((theme) => ({
   panel: {
@@ -22,11 +22,11 @@ const useStyles = makeStyles((theme) => ({
 export const Server: React.FC = observer(() => {
   const [comment, setComment] = useState('')
   const styles = useStyles()
-  const rootStore = useRootStore()
-  const messages = rootStore.currentServer?.messages
+  const { currentServer, postMessage } = useServerStore()
+  const messages = currentServer?.messages
   const handleEnterText = async (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && comment) {
-      await rootStore.postMessage(comment)
+      await postMessage(comment)
       setComment('')
     }
   }

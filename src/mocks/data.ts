@@ -60,3 +60,32 @@ export const serverByNameQuery: ServerByNameQuery = {
     ],
   },
 }
+
+export const selectServerQuery = {
+  server: {
+    id: 0,
+    title: 'My Server',
+    description: 'my server description',
+    image: 'my image',
+    messages: [
+      {
+        id: 0,
+        user: { name: 'user1' },
+        text: 'Message 1',
+        date: 0,
+      },
+      {
+        id: 1,
+        user: { name: 'user1' },
+        text: 'Message 2',
+        date: 0,
+      },
+      {
+        id: 2,
+        user: { name: 'user1' },
+        text: 'Message 3',
+        date: 0,
+      },
+    ],
+  },
+}

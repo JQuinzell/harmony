@@ -5,11 +5,15 @@ export function useServerStore() {
   const rootStore = useRootStore()
   return {
     joinedServers: rootStore.joinedServers,
+    currentServer: rootStore.currentServer,
     createServer(data: CreateServer) {
       return rootStore.createServer(data)
     },
     selectServer(title: string) {
       return rootStore.selectServer(title)
+    },
+    postMessage(text: string) {
+      return rootStore.postMessage(text)
     },
   }
 }
