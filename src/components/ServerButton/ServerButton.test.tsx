@@ -17,4 +17,10 @@ describe('ServerButton', () => {
     expect(button).toBeInTheDocument()
     expect(button).toHaveTextContent(new RegExp(`^${title.slice(0, 2)}$`))
   })
+
+  it('renders children', () => {
+    renderWithProviders(<ServerButton {...defaultProps}>children</ServerButton>)
+
+    expect(screen.getByText('children')).toBeInTheDocument()
+  })
 })
