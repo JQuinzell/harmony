@@ -1,7 +1,6 @@
 import { Grid, makeStyles } from '@material-ui/core'
 import { observer } from 'mobx-react-lite'
 import React from 'react'
-import { useRootStore } from '~/RootStoreContext'
 import { useServerStore } from '~/stores/serverHooks'
 import { AddServer } from '../AddServer'
 import { SearchServer } from '../SearchServer'
@@ -19,11 +18,10 @@ const useStyles = makeStyles((theme) => ({
 
 export const SideBar: React.FC = observer(() => {
   const styles = useStyles()
-  const rootStore = useRootStore()
-  const { selectServer } = useServerStore()
+  const { selectServer, joinedServers } = useServerStore()
   return (
     <Grid className={styles.nav} container direction="column" component="nav">
-      {rootStore.joinedServers.map((server) => (
+      {joinedServers.map((server) => (
         <Grid key={server.title} item>
           <ServerButton
             title={server.title}

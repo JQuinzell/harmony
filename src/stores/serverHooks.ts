@@ -4,7 +4,7 @@ import { CreateServer } from './interfaces'
 export function useServerStore() {
   const rootStore = useRootStore()
   return {
-    rootStore,
+    joinedServers: rootStore.joinedServers,
     createServer(data: CreateServer) {
       return rootStore.createServer(data)
     },
