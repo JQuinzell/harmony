@@ -1,8 +1,8 @@
 import { makeStyles, TextField } from '@material-ui/core'
 import { observer } from 'mobx-react-lite'
 import React, { useState } from 'react'
-import { useRootStore } from '../RootStoreContext'
-import { Comment } from './Comment'
+import { useRootStore } from '~/RootStoreContext'
+import { Comment } from '~/components/Comment'
 
 const useStyles = makeStyles((theme) => ({
   panel: {
