@@ -15,5 +15,8 @@ export function useServerStore() {
     postMessage(text: string) {
       return rootStore.postMessage(text)
     },
+    login(username: string, password: string) {
+      return rootStore.login(username, password)
+    },
   }
 }

@@ -9,7 +9,8 @@ import {
 } from '@material-ui/core'
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { useRootStore } from '../RootStoreContext'
+import { useRootStore } from '~/RootStoreContext'
+import { useServerStore } from '~/stores/serverHooks'
 
 const useStyles = makeStyles((theme) => ({
   loginCard: {
@@ -31,11 +32,11 @@ export const Login: React.FC = () => {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const styles = useStyles()
-  const rootStore = useRootStore()
+  const { login } = useServerStore()
 
   async function onSubmit() {
     try {
-      await rootStore.login(username, password)
+      await login(username, password)
       history.push('/')
     } catch (err) {
       console.log(err)
@@ -57,6 +58,7 @@ export const Login: React.FC = () => {
         </Grid>
         <Grid item>
           <TextField
+            id="username-input"
             label="username"
             variant="filled"
             fullWidth
@@ -68,6 +70,7 @@ export const Login: React.FC = () => {
         </Grid>
         <Grid item>
           <TextField
+            id="password-input"
             label="password"
             type="password"
             variant="filled"
