@@ -4,16 +4,14 @@ import userEvent from '@testing-library/user-event'
 import { AddServer } from './AddServer'
 import React from 'react'
 import { useServerStore } from '~/stores/serverHooks'
+import { useServerStore as mockUseServerStore } from '~/stores/__mocks__/serverHooks'
 
 jest.mock('~/stores/serverHooks')
 
 describe('AddServer', () => {
   const init = () => renderWithProviders(<AddServer />)
   const getAddButton = () => screen.getByRole('button', { name: 'add' })
-  const mockUseServerStore = (useServerStore as unknown) as jest.MockedFunction<
-    typeof useServerStore
-  >
-  const { createServer } = mockUseServerStore()
+  const { createServer } = (useServerStore as typeof mockUseServerStore)()
 
   it('renders add button', () => {
     init()

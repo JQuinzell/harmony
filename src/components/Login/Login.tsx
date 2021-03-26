@@ -9,7 +9,6 @@ import {
 } from '@material-ui/core'
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { useRootStore } from '~/RootStoreContext'
 import { useServerStore } from '~/stores/serverHooks'
 
 const useStyles = makeStyles((theme) => ({

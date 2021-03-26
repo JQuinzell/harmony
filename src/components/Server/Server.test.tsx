@@ -4,6 +4,7 @@ import { renderWithProviders } from '~/testUtils'
 import { Server } from './Server'
 import { selectServerQuery } from '~/mocks/data'
 import { useServerStore } from '~/stores/serverHooks'
+import { useServerStore as mockUseServerStore } from '~/stores/__mocks__/serverHooks'
 import userEvent from '@testing-library/user-event'
 
 jest.mock('~/stores/serverHooks')
@@ -12,10 +13,7 @@ describe('Server', () => {
   const init = () => renderWithProviders(<Server />)
   const getInput = () => screen.getByPlaceholderText(/enter a message/i)
   const currentServer = selectServerQuery.server
-  const mockUseServerStore = (useServerStore as unknown) as jest.MockedFunction<
-    typeof useServerStore
-  >
-  const { postMessage } = mockUseServerStore()
+  const { postMessage } = (useServerStore as typeof mockUseServerStore)()
   it('should display comments and a text field', () => {
     init()
 

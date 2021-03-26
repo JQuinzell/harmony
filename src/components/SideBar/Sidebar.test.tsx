@@ -5,15 +5,13 @@ import { serverPreviewsQuery } from '~/mocks/data'
 import { renderWithProviders } from '~/testUtils'
 import { SideBar } from './Sidebar'
 import { useServerStore } from '~/stores/serverHooks'
+import { useServerStore as mockUseServerStore } from '~/stores/__mocks__/serverHooks'
 
 jest.mock('~/stores/serverHooks')
 
 describe('Sidebar', () => {
   const init = () => renderWithProviders(<SideBar />)
-  const mockUseServerStore = (useServerStore as unknown) as jest.MockedFunction<
-    typeof useServerStore
-  >
-  const { selectServer } = mockUseServerStore()
+  const { selectServer } = (useServerStore as typeof mockUseServerStore)()
   const titles = serverPreviewsQuery.user.servers.map(({ title }) => title)
 
   it('should list server and action buttons', async () => {

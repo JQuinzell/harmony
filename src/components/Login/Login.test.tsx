@@ -4,15 +4,13 @@ import { renderWithProviders } from '~/testUtils'
 import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import { useServerStore } from '~/stores/serverHooks'
+import { useServerStore as mockUseServerStore } from '~/stores/__mocks__/serverHooks'
 
 jest.mock('~/stores/serverHooks')
 
 describe('Login', () => {
   const init = () => renderWithProviders(<Login />)
-  const mockUseServerStore = (useServerStore as unknown) as jest.MockedFunction<
-    typeof useServerStore
-  >
-  const { login } = mockUseServerStore()
+  const { login } = (useServerStore as typeof mockUseServerStore)()
   const userInput = () => screen.getByLabelText('username')
   const passwordInput = () => screen.getByLabelText('password')
   const signupButton = () => screen.getByRole('button', { name: /sign up/i })
@@ -41,7 +39,7 @@ describe('Login', () => {
   })
 
   it('should show error message if error', async () => {
-    ;(login as any).mockRejectedValue(undefined)
+    login.mockRejectedValue(undefined)
     init()
 
     userEvent.click(signupButton())
