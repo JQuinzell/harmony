@@ -8,9 +8,10 @@ import {
 import { observer } from 'mobx-react-lite'
 import React, { useState } from 'react'
 import { Server } from '~/stores/RootStore'
-import { useRootStore } from '../RootStoreContext'
-import { ServerButton } from './ServerButton'
-import { ServerCard } from './ServerCard'
+import { useRootStore } from '~/RootStoreContext'
+import { ServerButton } from '~/components/ServerButton'
+import { ServerCard } from '~/components/ServerCard'
+import { useServerStore } from '~/stores/serverHooks'
 
 const useStyles = makeStyles({
   cards: {

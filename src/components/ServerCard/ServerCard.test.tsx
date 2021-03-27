@@ -18,6 +18,7 @@ describe('ServerCard', () => {
         onJoin={onJoin}
       />
     )
+  const joinButton = () => screen.getByRole('button', { name: 'join-' + title })
 
   it('should render', () => {
     init()
@@ -25,14 +26,13 @@ describe('ServerCard', () => {
     expect(screen.getByRole('img')).toHaveAttribute('src', image)
     expect(screen.getByText(title)).toBeInTheDocument()
     expect(screen.getByText(description)).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Join' }))
+    expect(joinButton())
   })
 
   it('should call onJoin when clicking join', () => {
     init()
 
-    const button = screen.getByRole('button', { name: 'Join' })
-    userEvent.click(button)
+    userEvent.click(joinButton())
 
     expect(onJoin).toBeCalled()
   })

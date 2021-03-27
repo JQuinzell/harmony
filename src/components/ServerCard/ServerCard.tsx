@@ -49,7 +49,9 @@ export const ServerCard: React.FC<IProps> = ({
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button onClick={onJoin}>Join</Button>
+        <Button onClick={onJoin} aria-label={`join-${title}`}>
+          Join
+        </Button>
       </CardActions>
     </Card>
   )
