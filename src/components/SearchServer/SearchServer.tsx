@@ -8,7 +8,6 @@ import {
 import { observer } from 'mobx-react-lite'
 import React, { useState } from 'react'
 import { Server } from '~/stores/RootStore'
-import { useRootStore } from '~/RootStoreContext'
 import { ServerButton } from '~/components/ServerButton'
 import { ServerCard } from '~/components/ServerCard'
 import { useServerStore } from '~/stores/serverHooks'
@@ -22,7 +21,7 @@ const useStyles = makeStyles({
 export const SearchServer: React.FC = observer(() => {
   const styles = useStyles()
   const [open, setOpen] = useState(false)
-  const rootStore = useRootStore()
+  const { servers, joinServer } = useServerStore()
 
   function closeDialog() {
     setOpen(false)
@@ -32,8 +31,8 @@ export const SearchServer: React.FC = observer(() => {
     setOpen(true)
   }
 
-  function joinServer(id: Server['id']) {
-    rootStore.joinServer(id)
+  function onJoin(id: Server['id']) {
+    joinServer(id)
     closeDialog()
   }
 
@@ -45,13 +44,13 @@ export const SearchServer: React.FC = observer(() => {
       <Dialog fullWidth maxWidth="xl" open={open} onClose={closeDialog}>
         <DialogTitle>Join a Server</DialogTitle>
         <DialogContent className={styles.cards}>
-          {rootStore.servers.map(({ id, title, image, description }) => (
+          {servers.map(({ id, title, image, description }) => (
             <ServerCard
               key={title}
               title={title}
               image={image}
               description={description}
-              onJoin={() => joinServer(id)}
+              onJoin={() => onJoin(id)}
             />
           ))}
         </DialogContent>

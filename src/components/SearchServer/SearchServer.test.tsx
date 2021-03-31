@@ -12,10 +12,7 @@ jest.mock('~/stores/serverHooks')
 describe('SearchServer', () => {
   const init = () => renderWithProviders(<SearchServer />)
   const searchButton = () => screen.getByRole('button', { name: 'search' })
-  const {
-    joinServer,
-    selectServer,
-  } = (useServerStore as typeof mockUseServerStore)()
+  const { joinServer } = (useServerStore as typeof mockUseServerStore)()
 
   it('should render', () => {
     init()
@@ -47,6 +44,5 @@ describe('SearchServer', () => {
     userEvent.click(joinButton)
 
     expect(joinServer).toBeCalledWith(id)
-    expect(selectServer).toBeCalledWith(title)
   })
 })
