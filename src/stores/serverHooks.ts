@@ -6,10 +6,10 @@ export function useServerStore() {
     joinedServers: rootStore.joinedServers,
     currentServer: rootStore.currentServer,
     servers: rootStore.servers,
-    createServer: rootStore.createServer,
-    selectServer: rootStore.selectServer,
-    postMessage: rootStore.postMessage,
-    joinServer: rootStore.joinServer,
-    login: rootStore.login,
+    createServer: rootStore.createServer.bind(rootStore),
+    selectServer: rootStore.selectServer.bind(rootStore),
+    postMessage: rootStore.postMessage.bind(rootStore),
+    joinServer: rootStore.joinServer.bind(rootStore),
+    login: rootStore.login.bind(rootStore),
   }
 }
